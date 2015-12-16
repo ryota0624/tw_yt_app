@@ -1,5 +1,8 @@
 import {dispatcher} from '../flux';
 import constants from './constants';
+const post = remote.require("./lib/tweet").post;
+const favorite = remote.require("./lib/tweet").favorite;
+console.log(post)
 console.log(constants)
 const addTweet = (tweet) => {
 	console.log(tweet)
@@ -9,6 +12,11 @@ const addTweet = (tweet) => {
 	})
 }
 
+const postTweet = (tweet) => {
+	post(tweet);
+}
+
 export default  {
-	addTweet
+	addTweet,
+	postTweet
 }
