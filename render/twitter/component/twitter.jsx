@@ -29,7 +29,7 @@ class Twitter extends Component {
 	}
 	
 	render() {
-		const tweets = this.props.tweet.reverse().map((tweet, i) => <Twit key={i}>{tweet}</Twit>)
+		const tweets = this.props.tweet.map((tweet, i) => <Twit key={i}>{tweet}</Twit>).reverse()
 		return (
 			<ul className="list-group">
 				<li className="list-group-header">
@@ -45,9 +45,15 @@ class Twitter extends Component {
 		const {tweet} = this.state;
 		this.setState({tweet: tweet.setText(ev.target.value)});
 	}
+	itemClickHandle(ev) {
+		
+	}
 	enterHandle(ev) {
 		if(ev.keyCode === 13) {
-			twActions.postTweet(this.state.tweet);	
+			if(this.state.tweet.text.length > 0) {
+				twActions.postTweet(this.state.tweet);
+				this.setState({tweet: new Tweet()})
+			}
 		}
 	}
 }

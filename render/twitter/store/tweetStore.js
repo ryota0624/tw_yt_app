@@ -1,5 +1,7 @@
 import { Store } from "../../flux";
 import constants from "../constants.js";
+import storageCreater from "../../storage";
+const  storage = storageCreater('tw',10000);
 
 class TweetStore extends Store {
 	constructor(initialState) {
@@ -14,12 +16,13 @@ class TweetStore extends Store {
 			 console.log(action)
 				this.state = this.state.concat(action.tweet);
 				this.emitChange();
+				storage.saveStorage(this.state);
 				break;
 			default:
 		}
 	}
 }
 
-const tweetStore = new TweetStore([]);
+const tweetStore = new TweetStore(storage.loadStorage());
  
 export default tweetStore;

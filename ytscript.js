@@ -6,6 +6,6 @@
     window.YTPlayer = new YT.Player('youtube', {
         height: '100',
         width: '175',
-        videoId: 'XeWxFDlufNo'
+        videoId: ''
     });
 	};
