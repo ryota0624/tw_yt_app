@@ -15,7 +15,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="pane-group">
-                <div className="pane"><MarkDown /></div>
+                {/*<div className="pane"><MarkDown /></div>*/}
 				<div className="pane"><Twitter /></div>
 				<div className="pane"><Youtube /></div>
 				{/*<div className="pane"><FileUp userId={1} target={"http://localhost:3000/img"} post={"http://localhost:3000/api/addessay"}/></div>*/}

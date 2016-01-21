@@ -1,8 +1,8 @@
 import { Provider } from '../../flux';
 import React,{ Component } from 'react';
-import Twit from './twit';
 import tweetStore from '../store/tweetStore';
 import twActions from '../actions';
+import TweetList from './tweetList';
 
 class Tweet {
 	constructor(text = "", rep = null) {
@@ -27,9 +27,7 @@ class Twitter extends Component {
 			tweet: new Tweet()
 		}
 	}
-	
 	render() {
-		const tweets = this.props.tweet.map((tweet, i) => <Twit key={i}>{tweet}</Twit>).reverse()
 		return (
 			<ul className="list-group">
 				<li className="list-group-header">
@@ -38,7 +36,7 @@ class Twitter extends Component {
 						onChange={this.changeHandle.bind(this)}
 						onKeyDown={this.enterHandle.bind(this)}/>
 				</li>
-				{ tweets }
+				<TweetList tweet={this.props.tweet}/>
 			</ul>)
 	}
 	changeHandle(ev) {
