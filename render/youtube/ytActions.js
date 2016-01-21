@@ -12,6 +12,13 @@ const searchVideo = (keyword) => {
 	})
 }
 
-export default  {
-	searchVideo
+const up = (videoId) => {
+    dispatcher.dispatch({
+        actionType: constants.up,
+        videoId
+    })
+}
+module.exports = {
+	searchVideo,
+    up
 }

@@ -21,6 +21,7 @@
     "promise": "^7.0.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-youtube": "^5.0.0",
     "superagent": "^1.5.0",
     "twit": "^2.1.1"
   }

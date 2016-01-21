@@ -12,14 +12,15 @@ class Youtube extends Component {
 			search: ""
 		}
 	}
-	
+	//動画ツイートボタン
 	render() {
+        console.log("hoge")
 		const list = this.props.yt.map((item, i) => {
 			return <YTitem key={i}>{item}</YTitem>
 		})
 		return (
 			<div>
-				<YTPlayer />
+				<YTPlayer videoId={this.props.yt.videoId}/>
 				<ul className="list-group">
 					<li className="list-group-header">
     				<input className="form-control" type="text" 
@@ -29,6 +30,16 @@ class Youtube extends Component {
 						onChange={this.changeHandle.bind(this)}
 						/>
 					</li>
+                    <li className="list-group-item">
+                      <div className="btn-group">
+                        <button className="btn btn-large btn-default">
+                            <span className="icon icon-note"></span>
+                        </button>
+                        <button className="btn btn-large btn-default">
+                            <span className="icon icon-user"></span>
+                        </button>
+                       </div>
+                    </li>
 					{list}
 				</ul>
 			</div>

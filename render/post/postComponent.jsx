@@ -58,21 +58,42 @@ export default class PostComponent extends Component {
 		return (
 			<div className='pane-group'>
 			 <div className='pane'>
-                <img className="img-circle media-object pull-left" src={user.profile_image_url} width="60" height="60"/>
-					<strong>{user.name}</strong>
+             <ul className="list-group">
+                <li className="list-group-header">
+                <img className="img-circle media-object pull-left" src={user.profile_image_url} width="40" height="40"/>
+                	<strong>{user.name}</strong>
 				    <p>@{user.screen_name}</p>
+                </li>
+                <li className="list-group-item">
                 {tweetText(text)}
+                </li>
+                <li className="list-group-item">
                 <ul style={listStyle}>
                     {mediaLink}
                 </ul>
-				<form>
+                </li>
+                <li className="list-group-item">
+				
 					<div className="form-group">
     				    <textarea className="form-control" rows="5" value={this.state.tweet.text}
 						onChange={this.changeHandle.bind(this)}></textarea>
   				    </div>
+                 </li>
+                 <li className="list-group-item">
+                     <div className="btn-group">
 						<button className="btn btn-primary" 
-						onClick={this.clickHandle.bind(this)}>Primary</button>
-				</form>
+						onClick={this.clickHandle.bind(this)}>
+                            リプライ
+                        </button>
+                        <button className="btn btn-primary" 
+						onClick={this.clickHandle.bind(this)}>
+                            お気に入り
+                        </button>
+                        { user.screen_name != "58ryt" ? false : <button className="btn btn-primary" 
+						onClick={this.clickHandle.bind(this)}>削除</button>}
+				    </div>
+                   </li>
+               </ul>
 			   </div>
 			</div>
 		)

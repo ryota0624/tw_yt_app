@@ -21,8 +21,8 @@ class App extends React.Component {
 			<div className="pane-group">
                 {/*<div className="pane"><MarkDown /></div>*/}
                 <div className="pane-mini sidebar"><Sidebar /></div>
-				{youtube ? <div className="pane"><Twitter /></div> : false }
-				{twitter ? <div className="pane"><Youtube /></div> : false }
+				{twitter ? <div className="pane"><Twitter /></div> : false }
+				{youtube ? <div className="pane"><Youtube /></div> : false }
 				{/*<div className="pane"><FileUp userId={1} target={"http://localhost:3000/img"} post={"http://localhost:3000/api/addessay"}/></div>*/}
 			</div>
 		)

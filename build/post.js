@@ -19774,38 +19774,74 @@
 					_react2.default.createElement(
 						"div",
 						{ className: "pane" },
-						_react2.default.createElement("img", { className: "img-circle media-object pull-left", src: user.profile_image_url, width: "60", height: "60" }),
-						_react2.default.createElement(
-							"strong",
-							null,
-							user.name
-						),
-						_react2.default.createElement(
-							"p",
-							null,
-							"@",
-							user.screen_name
-						),
-						tweetText(text),
 						_react2.default.createElement(
 							"ul",
-							{ style: listStyle },
-							mediaLink
-						),
-						_react2.default.createElement(
-							"form",
-							null,
+							{ className: "list-group" },
 							_react2.default.createElement(
-								"div",
-								{ className: "form-group" },
-								_react2.default.createElement("textarea", { className: "form-control", rows: "5", value: this.state.tweet.text,
-									onChange: this.changeHandle.bind(this) })
+								"li",
+								{ className: "list-group-header" },
+								_react2.default.createElement("img", { className: "img-circle media-object pull-left", src: user.profile_image_url, width: "40", height: "40" }),
+								_react2.default.createElement(
+									"strong",
+									null,
+									user.name
+								),
+								_react2.default.createElement(
+									"p",
+									null,
+									"@",
+									user.screen_name
+								)
 							),
 							_react2.default.createElement(
-								"button",
-								{ className: "btn btn-primary",
-									onClick: this.clickHandle.bind(this) },
-								"Primary"
+								"li",
+								{ className: "list-group-item" },
+								tweetText(text)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "list-group-item" },
+								_react2.default.createElement(
+									"ul",
+									{ style: listStyle },
+									mediaLink
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "list-group-item" },
+								_react2.default.createElement(
+									"div",
+									{ className: "form-group" },
+									_react2.default.createElement("textarea", { className: "form-control", rows: "5", value: this.state.tweet.text,
+										onChange: this.changeHandle.bind(this) })
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "list-group-item" },
+								_react2.default.createElement(
+									"div",
+									{ className: "btn-group" },
+									_react2.default.createElement(
+										"button",
+										{ className: "btn btn-primary",
+											onClick: this.clickHandle.bind(this) },
+										"リプライ"
+									),
+									_react2.default.createElement(
+										"button",
+										{ className: "btn btn-primary",
+											onClick: this.clickHandle.bind(this) },
+										"お気に入り"
+									),
+									user.screen_name != "58ryt" ? false : _react2.default.createElement(
+										"button",
+										{ className: "btn btn-primary",
+											onClick: this.clickHandle.bind(this) },
+										"削除"
+									)
+								)
 							)
 						)
 					)
