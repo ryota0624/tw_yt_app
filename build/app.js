@@ -68,6 +68,16 @@
 	
 	var _imgUpdate2 = _interopRequireDefault(_imgUpdate);
 	
+	var _iconsComponent = __webpack_require__(203);
+	
+	var _iconsComponent2 = _interopRequireDefault(_iconsComponent);
+	
+	var _flux = __webpack_require__(2);
+	
+	var _store = __webpack_require__(206);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -93,19 +103,28 @@
 		_createClass(App, [{
 			key: 'render',
 			value: function render() {
+				var _props$tab = this.props.tab;
+				var twitter = _props$tab.twitter;
+				var youtube = _props$tab.youtube;
+	
 				return React.createElement(
 					'div',
 					{ className: 'pane-group' },
 					React.createElement(
 						'div',
+						{ className: 'pane-mini sidebar' },
+						React.createElement(_iconsComponent2.default, null)
+					),
+					youtube ? React.createElement(
+						'div',
 						{ className: 'pane' },
 						React.createElement(_twitter2.default, null)
-					),
-					React.createElement(
+					) : false,
+					twitter ? React.createElement(
 						'div',
 						{ className: 'pane' },
 						React.createElement(_youtubePage2.default, null)
-					)
+					) : false
 				);
 			}
 		}]);
@@ -113,7 +132,30 @@
 		return App;
 	})(React.Component);
 	
-	render(React.createElement(App, null), document.getElementById('app'));
+	var AppProvider = (function (_React$Component2) {
+		_inherits(AppProvider, _React$Component2);
+	
+		function AppProvider(props) {
+			_classCallCheck(this, AppProvider);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(AppProvider).call(this, props));
+		}
+	
+		_createClass(AppProvider, [{
+			key: 'render',
+			value: function render() {
+				return React.createElement(
+					_flux.Provider,
+					{ store: { tab: _store2.default } },
+					App
+				);
+			}
+		}]);
+	
+		return AppProvider;
+	})(React.Component);
+	
+	render(React.createElement(AppProvider, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -20872,14 +20914,14 @@
 	  display: "inline-block",
 	  border: "1px solid #ccc",
 	  padding: "5px 10px",
-	  "text-align": "center"
+	  "textAlign": "center"
 	};
 	
 	var listStyle = {
 	  width: "100%",
 	  margin: "0 auto",
-	  "white-space": "nowrap",
-	  "overflow-x": "scroll"
+	  "whiteSpace": "nowrap",
+	  "overflowX": "scroll"
 	};
 	
 	var mediaToLink = function mediaToLink(extended_entities) {
@@ -39809,6 +39851,199 @@
 	
 	module.exports = __webpack_require__(5);
 
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(3);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(204);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var IconsComponent = (function (_Component) {
+	    _inherits(IconsComponent, _Component);
+	
+	    function IconsComponent(props) {
+	        _classCallCheck(this, IconsComponent);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IconsComponent).call(this, props));
+	    }
+	
+	    _createClass(IconsComponent, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'ul',
+	                { className: 'list-group' },
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'list-group-item' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        null,
+	                        _react2.default.createElement('img', { name: 'twitter',
+	                            className: 'img-circle media-object pull-left',
+	                            src: 'https://lh3.ggpht.com/nn0_2f2yehKR7fnMIZ0XrSWbC5Q0VPP7vNmLMV7ndNFinClynZRO4RBTGfbjVOs1fyA=w300',
+	                            onClick: this.clickHandle.bind(this),
+	                            width: '35', height: '35' })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'li',
+	                    { className: 'list-group-item' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        null,
+	                        _react2.default.createElement('img', { name: 'youtube',
+	                            className: 'img-circle media-object pull-left',
+	                            src: 'http://www.cigaraficionado.com/css/img/social/youtube.png',
+	                            onClick: this.clickHandle.bind(this),
+	                            width: '35', height: '35' })
+	                    )
+	                ),
+	                _react2.default.createElement('li', null)
+	            );
+	        }
+	    }, {
+	        key: 'clickHandle',
+	        value: function clickHandle(ev) {
+	            console.log(_actions2.default);
+	            _actions2.default.toggle(ev.target.name);
+	        }
+	    }]);
+	
+	    return IconsComponent;
+	})(_react.Component);
+	
+	exports.default = IconsComponent;
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _flux = __webpack_require__(2);
+	
+	var _constants = __webpack_require__(205);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var toggle = function toggle(tab) {
+		_flux.dispatcher.dispatch({
+			tab: tab,
+			actionType: _constants2.default.toggle
+		});
+	};
+	
+	exports.default = {
+		toggle: toggle
+	};
+
+/***/ },
+/* 205 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+		toggle: "toggle"
+	};
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _flux = __webpack_require__(2);
+	
+	var _constants = __webpack_require__(205);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _storage = __webpack_require__(168);
+	
+	var _storage2 = _interopRequireDefault(_storage);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var storage = (0, _storage2.default)('sidebar', 10000);
+	
+	var SidebarStore = (function (_Store) {
+		_inherits(SidebarStore, _Store);
+	
+		function SidebarStore(initialState) {
+			_classCallCheck(this, SidebarStore);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SidebarStore).call(this, initialState));
+	
+			_this.register(_this.handler.bind(_this));
+			return _this;
+		}
+	
+		_createClass(SidebarStore, [{
+			key: "handler",
+			value: function handler(action) {
+				console.log(action);
+				switch (action.actionType) {
+					case _constants2.default.toggle:
+						this.state[action.tab] = !this.state[action.tab];
+						this.emitChange();
+						storage.saveStorage(this.state);
+						break;
+					default:
+				}
+			}
+		}]);
+	
+		return SidebarStore;
+	})(_flux.Store);
+	
+	var sidebarStore = new SidebarStore({ twitter: true, youtube: true });
+	
+	exports.default = sidebarStore;
 
 /***/ }
 /******/ ]);

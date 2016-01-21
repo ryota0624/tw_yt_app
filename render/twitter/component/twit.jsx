@@ -12,14 +12,14 @@ const imgStype = {
 	display:"inline-block",
 	border:"1px solid #ccc",
 	padding:"5px 10px",
-	"text-align":"center",
+	"textAlign":"center",
 }
 
 const listStyle = {
     width:"100%",
     margin: "0 auto",
-    "white-space": "nowrap",
-    "overflow-x": "scroll"
+    "whiteSpace": "nowrap",
+    "overflowX": "scroll"
 }
 
 const mediaToLink = (extended_entities) => {
