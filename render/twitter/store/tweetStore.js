@@ -13,7 +13,6 @@ class TweetStore extends Store {
 		console.log(action);
 		switch(action.actionType) {
 			case constants.add :
-			 console.log(action)
 				this.state = this.state.concat(action.tweet);
 				this.emitChange();
 				storage.saveStorage(this.state);

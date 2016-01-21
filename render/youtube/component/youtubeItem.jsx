@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import { up } from '../ytActions'
 
 export default class YTitem extends Component {
 	constructor(props) {
@@ -16,6 +17,6 @@ export default class YTitem extends Component {
 	}
 	
 	clickHandle(ev) {
-		window.YTPlayer.loadVideoById(this.props.children.id.videoId);
+		up(this.props.children.id.videoId);
 	}
 }

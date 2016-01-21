@@ -16,7 +16,7 @@ app.on('ready',() => {
 	mainWindow = new Browser({
 		width: 800,
     height: 700,
-    'min-width': 800,
+    'min-width': 400,
     'min-height': 200,
     'accept-first-mouse': true,
     'title-bar-style': 'hidden'
@@ -41,8 +41,8 @@ ipc.on("open-tweet" ,(sys,tweet) => {
 	((windowNum) => {
 		 	newWindow_s = false;
   subWindows[windowNum] = new Browser({
-	width: 250,
- 	height: 300, 
+	width: 350,
+ 	height: 600, 
 	show: false,
 	'accept-first-mouse': true,
   'title-bar-style': 'hidden'

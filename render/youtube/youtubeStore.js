@@ -12,15 +12,24 @@ class YTStore extends Store {
 	handler(action) {
 		switch(action.actionType) {
 			case constants.add :
-				this.state = [].concat(action.videos, this.state);
+				let nextState = [].concat(action.videos, this.state);
+                nextState.videoId = this.state.videoId;
+                this.state = nextState;
+                console.log(this.state.videoId);
 				this.emitChange();
 				storage.saveStorage(this.state);
 				break;
+            case constants.up :
+                this.state.videoId = action.videoId;
+                this.emitChange();
+                storage.saveStorage(this.state);
+                break;
 			default:
 		}
 	}
 }
-const initialState = storage.loadStorage()
+const initialState = storage.loadStorage();
+console.log(initialState);
 const youtubeStore = new YTStore(initialState);
  
 export default youtubeStore;

@@ -1,3 +1,4 @@
 export default {
-	add: "addVideo"
+	add: "addVideo",
+    up: "up"
 }

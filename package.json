@@ -16,10 +16,12 @@
     "events": "^1.1.0",
     "flux": "^2.1.1",
     "ifx": "^1.0.4",
+    "lodash": "^4.0.0",
     "marked": "^0.3.5",
     "promise": "^7.0.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-youtube": "^5.0.0",
     "superagent": "^1.5.0",
     "twit": "^2.1.1"
   }
