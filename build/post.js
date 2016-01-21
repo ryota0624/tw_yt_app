@@ -19676,12 +19676,24 @@
 	
 	var _ = __webpack_require__(160);
 	var post = remote.require("./lib/tweet").post;
+	var imgStype = {
+		display: "inline-block",
+		border: "1px solid #ccc",
+		padding: "5px 10px",
+		"text-align": "center"
+	};
+	
+	var listStyle = {
+		width: "100%",
+		margin: "0 auto",
+		"white-space": "nowrap",
+		"overflow-x": "scroll"
+	};
 	var tweetText = function tweetText(text) {
 		var url = /(https:\/\/[\x21-\x7e]+)/gi;
 		var urlArr = url.exec(text);
-		var linkArr = urlArr ? urlArr.map(function (url) {
-			return _react2.default.createElement("a", { href: url });
-		}) : [];
+		console.log(urlArr);
+		// const linkArr = urlArr ? urlArr.map((url) => <img src={url} />) : [];
 		var convText = text.replace(url, "");
 		var textArr = _.chunk(convText.split(""), 24);
 		return textArr.map(function (line) {
@@ -19690,7 +19702,7 @@
 				null,
 				line
 			);
-		}).concat(urlArr);
+		}); //.concat(linkArr);
 	};
 	
 	var Tweet = (function () {
@@ -19721,6 +19733,17 @@
 		return Tweet;
 	})();
 	
+	var mediaToLink = function mediaToLink(extended_entities) {
+		if (!extended_entities) return [];
+		return extended_entities.media.map(function (item) {
+			return _react2.default.createElement(
+				"li",
+				{ style: imgStype },
+				_react2.default.createElement("img", { width: 200, height: 200, src: item.media_url })
+			);
+		});
+	};
+	
 	var PostComponent = (function (_Component) {
 		_inherits(PostComponent, _Component);
 	
@@ -19742,7 +19765,9 @@
 				var text = _props$tweet.text;
 				var user = _props$tweet.user;
 				var id_str = _props$tweet.id_str;
+				var extended_entities = _props$tweet.extended_entities;
 	
+				var mediaLink = mediaToLink(extended_entities);
 				return _react2.default.createElement(
 					"div",
 					{ className: "pane-group" },
@@ -19762,6 +19787,11 @@
 							user.screen_name
 						),
 						tweetText(text),
+						_react2.default.createElement(
+							"ul",
+							{ style: listStyle },
+							mediaLink
+						),
 						_react2.default.createElement(
 							"form",
 							null,

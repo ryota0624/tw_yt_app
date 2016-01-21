@@ -42,7 +42,7 @@ ipc.on("open-tweet" ,(sys,tweet) => {
 		 	newWindow_s = false;
   subWindows[windowNum] = new Browser({
 	width: 350,
- 	height: 300, 
+ 	height: 600, 
 	show: false,
 	'accept-first-mouse': true,
   'title-bar-style': 'hidden'
