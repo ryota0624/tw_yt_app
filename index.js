@@ -5,8 +5,6 @@ const Browser = require('browser-window');
 const clipboard = require("clipboard");
 const twitter = require("./lib/tweet");
 
-
-
 require('crash-reporter').start();
 let mainWindow = null;
 const ipc = require("electron").ipcMain;

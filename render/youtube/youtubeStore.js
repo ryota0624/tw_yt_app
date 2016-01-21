@@ -2,7 +2,6 @@ import { Store } from "../flux";
 import constants from "./constants.js";
 import storageCreater from "../storage";
 const  storage = storageCreater('yt',100);
-console.log(storage.loadStorage())
 
 class YTStore extends Store {
 	constructor(initialState) {

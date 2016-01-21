@@ -12,7 +12,6 @@ export default class Twit extends Component {
     		<img className="img-circle media-object pull-left" 
 				src={user.profile_image_url}
 				width="32" height="32"/>
-			  {/*<TwModal isActive={this.state.isModalActive} onClose={this.closeModal.bind(this)}/>*/}
     		<div className="media-body">
 					<strong>{user.name}</strong>
       		<p>{text}</p>
@@ -22,12 +21,5 @@ export default class Twit extends Component {
 	}
 	clickHandle() {
 		ipc.send('open-tweet', JSON.stringify(this.props.children));
-	}
-	openModal() {
-		//this.setState({isModalActive: true});
-	}
-	
-	closeModal() {
-		//this.setState({isModalActive: false});
 	}
 }

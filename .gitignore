@@ -1,2 +1,5 @@
 /node_modules
 /lib/config.js
+config.js
+build
+.idea
