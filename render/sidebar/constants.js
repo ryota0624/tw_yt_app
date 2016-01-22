@@ -1,3 +1,4 @@
 export default {
-	toggle: "toggle"
+	toggle: "toggle",
+    twPage: "twPage"
 }

@@ -7,7 +7,13 @@ const toggle = (tab) => {
 		actionType: constants.toggle,
 	})
 }
+const twPage = () => {
+   dispatcher.dispatch({
+		actionType: constants.twPage,
+	})
+}
 
-export default  {
-	toggle
+module.exports = {
+	toggle,
+    twPage
 }

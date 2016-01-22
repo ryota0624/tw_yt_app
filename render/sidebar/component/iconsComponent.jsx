@@ -27,7 +27,15 @@ export default class IconsComponent extends Component {
     }
     
     clickHandle(ev) {
-        console.log(actions)
-        actions.toggle(ev.target.name);
+        const targetName = ev.target.name;
+        const hideElement = document.getElementById(targetName);
+        actions.toggle(targetName);
+        if(hideElement) {
+            console.log(hideElement)
+            const width = hideElement.offsetWidth;
+            ipc.send('tabClose', JSON.stringify({width}));
+        } else {
+            ipc.send('tabOpen', JSON.stringify({}));   
+        }    
     }
 }

@@ -49,19 +49,20 @@ class Provider extends React.Component {
       store,
       storeName
     }
+    this.callback = this.onChange.bind(this);
   }
   
   componentWillUnmount() {
     const store = this.props.store;
     this.state.storeName.forEach(name => {
-      store[name].removeChangeListener(this.onChange.bind(this));
+      store[name].removeChangeListener(this.callback);
     })
   }
   
   componentDidMount() {
     const store = this.props.store;
     this.state.storeName.forEach(name => {
-      store[name].addChangeListener(this.onChange.bind(this));
+      store[name].addChangeListener(this.callback);
     })
   }
   

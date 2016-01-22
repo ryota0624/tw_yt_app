@@ -6,7 +6,7 @@ const tweetText = (text) => {
     const urlArr = url.exec(text);
     const convText = text.replace(url, "");
     const textArr = _.chunk(convText.split(""), 24);
-    return textArr.map(line => <p>{line}</p>)
+    return textArr.map((line, i) => <p key={i}>{line}</p>)
 }
 const imgStype = {
 	display:"inline-block",
@@ -24,7 +24,7 @@ const listStyle = {
 
 const mediaToLink = (extended_entities) => {
     if(!extended_entities) return [];
-     return extended_entities.media.map(item => <img style={imgStype} width={100} height={100} src={item.media_url} />)
+     return extended_entities.media.map((item,i ) => <img key={i} style={imgStype} width={100} height={100} src={item.media_url} />)
 }
 
 export default class Twit extends Component {
@@ -52,7 +52,7 @@ export default class Twit extends Component {
             { mediaLink }
             </ul>
     		</div>
-  	</li>
+  	     </li>
 		)
 	}
 	clickHandle() {

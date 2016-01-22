@@ -1,6 +1,7 @@
 import { Provider } from '../../flux';
 import React,{ Component } from 'react';
 import tweetStore from '../store/tweetStore';
+import sidebarStore from '../../sidebar/store'
 import twActions from '../actions';
 import TweetList from './tweetList';
 
@@ -28,7 +29,8 @@ class Twitter extends Component {
 		}
 	}
 	render() {
-		return (
+        const page = this.props.page.twPage;
+ 		return (
 			<ul className="list-group">
 				<li className="list-group-header">
 					<input className="form-control" type="text" 
@@ -36,7 +38,7 @@ class Twitter extends Component {
 						onChange={this.changeHandle.bind(this)}
 						onKeyDown={this.enterHandle.bind(this)}/>
 				</li>
-				<TweetList tweet={this.props.tweet}/>
+				<TweetList tweet={this.props.tweet} page={page}/>
 			</ul>)
 	}
 	changeHandle(ev) {
@@ -63,7 +65,7 @@ export default class TwitterProvider extends Component {
 	
 	render() {
 		return(
-		<Provider store={{tweet: tweetStore}}>
+		<Provider store={{tweet: tweetStore, page: sidebarStore}}>
 			{ Twitter }
 		</Provider>
 		)

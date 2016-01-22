@@ -14,13 +14,13 @@ app.on('ready',() => {
       mainWindow.webContents.send("tweet", JSON.stringify(tweet));
   });
 	mainWindow = new Browser({
-		width: 800,
-    height: 700,
-    'min-width': 400,
-    'min-height': 200,
-    'accept-first-mouse': true,
-    'title-bar-style': 'hidden'
-		});
+        width: 800,
+        height: 700,
+        'min-width': 400,
+        'min-height': 200,
+        'accept-first-mouse': true,
+        'title-bar-style': 'hidden'
+	});
 	mainWindow.loadUrl('file://' + __dirname + '/index.html');
 	mainWindow.on('closed',() => {
 		mainWindow = null
@@ -31,6 +31,18 @@ app.on('ready',() => {
 ipc.on("post" ,(sys,tweet) => {
  var tw = JSON.parse(tweet);
   tw = twitter.post(tw);
+})
+
+ipc.on("tabOpen", (sys, tab) => {
+    console.log(mainWindow.getSize());
+    const tabSize = mainWindow.getSize();
+    mainWindow.setContentSize(tabSize[0] + 300 , tabSize[1]);
+})
+
+ipc.on("tabClose", (sys, tab) => {
+    const tabWidth = JSON.parse(tab);
+    const tabSize = mainWindow.getSize();
+    mainWindow.setContentSize(tabSize[0] - tabWidth.width, tabSize[1]);
 })
 
 let subWindows = [];

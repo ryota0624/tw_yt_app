@@ -13,9 +13,11 @@ class TweetStore extends Store {
 		console.log(action);
 		switch(action.actionType) {
 			case constants.add :
-				this.state = this.state.concat(action.tweet);
-				this.emitChange();
-				storage.saveStorage(this.state);
+                if(tweetCheck(action.tweet)) {
+                    this.state = this.state.concat(action.tweet);
+				    this.emitChange();
+				    storage.saveStorage(this.state);   
+                }
 				break;
 			default:
 		}
@@ -25,3 +27,14 @@ class TweetStore extends Store {
 const tweetStore = new TweetStore(storage.loadStorage());
  
 export default tweetStore;
+
+function tweetCheck(state, tweet) {
+    console.log(state);
+    state.forEach(item =>  {
+        if(item.id_str === tweet.id_str) {
+            console.log(item)
+            return false
+        }
+    })
+    return true
+}

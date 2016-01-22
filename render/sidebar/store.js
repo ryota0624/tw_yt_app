@@ -16,12 +16,17 @@ class SidebarStore extends Store {
 				this.state[action.tab] = !this.state[action.tab];
 				this.emitChange();
 				storage.saveStorage(this.state);
-				break;
+				break
+            case constants.twPage :
+                this.state.twPage = this.state.twPage + 1;
+                this.emitChange();
+                storage.saveStorage(this.state);
+                break
 			default:
 		}
 	}
 }
-
-const sidebarStore = new SidebarStore({twitter: true, youtube: true});
+const initial = {twitter: true, youtube: true, twPage: 2}
+const sidebarStore = new SidebarStore(initial);
  
 export default sidebarStore;
