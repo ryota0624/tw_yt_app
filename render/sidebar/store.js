@@ -10,7 +10,6 @@ class SidebarStore extends Store {
 	}
 	
 	handler(action) {
-		console.log(action);
 		switch(action.actionType) {
 			case constants.toggle :
 				this.state[action.tab] = !this.state[action.tab];

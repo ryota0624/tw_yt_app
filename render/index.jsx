@@ -1,6 +1,6 @@
 const React = require('react');
 const render = require('react-dom').render;
-import connect from './connect';
+// import connect from './connect';
 import Twitter from './twitter/component/twitter';
 import Youtube from './youtube/component/youtubePage';
 import MarkDown from './markDown/component/mdComponent';
@@ -9,8 +9,6 @@ import Sidebar from './sidebar/component/iconsComponent';
 import { Provider } from './flux';
 import sidebarStore from './sidebar/store';
 import { twPage } from './sidebar/actions.js'; 
-
-connect();
 
 class App extends React.Component {
 	constructor(props) {

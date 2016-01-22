@@ -4,6 +4,7 @@ import tweetStore from '../store/tweetStore';
 import sidebarStore from '../../sidebar/store'
 import twActions from '../actions';
 import TweetList from './tweetList';
+import { twitInit } from "../tweetinit.js";
 
 class Tweet {
 	constructor(text = "", rep = null) {
@@ -27,6 +28,7 @@ class Twitter extends Component {
 		this.state = {
 			tweet: new Tweet()
 		}
+        twitInit(30);
 	}
 	render() {
         const page = this.props.page.twPage;
