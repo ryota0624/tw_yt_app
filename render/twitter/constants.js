@@ -1,3 +1,4 @@
 export default {
-	add: "addTweet"
+	add: "addTweet",
+    init: "init"
 }

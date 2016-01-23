@@ -10,11 +10,19 @@ const addTweet = (tweet) => {
 	})
 }
 
+const initFetch = (tweets) => {
+    dispatcher.dispatch({
+        tweets,
+        actionType: constants.init
+    })
+}
+
 const postTweet = (tweet) => {
 	post(tweet);
 }
 
 export default  {
 	addTweet,
-	postTweet
+	postTweet,
+    initFetch
 }

@@ -2,7 +2,8 @@ import { Store } from "../../flux";
 import constants from "../constants.js";
 import storageCreater from "../../storage";
 const  storage = storageCreater('tw',1000);
-
+const im = require("immutable");
+const twitter = remote.require("./lib/tweet");
 
 class TweetStore extends Store {
 	constructor(initialState) {
@@ -13,18 +14,33 @@ class TweetStore extends Store {
 	handler(action) {
 		switch(action.actionType) {
 			case constants.add :
-                if(tweetCheck(this.state ,action.tweet)) {
-                    this.state = this.state.concat(action.tweet);
-				    this.emitChange();
-				    storage.saveStorage(this.state);   
-                }
-				break;
+                const { id } = action.tweet;
+                this.state.tweets = this.state.tweets.set(id, action.tweet);
+			    this.emitChange();
+                this.saveTweets();
+			break;
+            case constants.init :
+                {tweets} = action;
+                let tweetsOb = {};
+                tweets.forEach(tweet => {
+                    tweetsOb[tweet.id] = tweet;
+                });
+                this.state.tweets = tweets.concat(im.Map(tweetsOb));
+			    this.emitChange();
+                this.saveTweets();
+            break;
 			default:
 		}
 	}
+    
+    saveTweets() {
+        const forStorage = Object.assign({}, this.state, {tweets: this.state.tweets.toJSON()});
+		storage.saveStorage(forStorage);
+    }
 }
-
-const tweetStore = new TweetStore(storage.loadStorage());
+let initStorage = storage.loadStorage();
+initStorage.tweets = new im.Map(initStorage.tweets);
+const tweetStore = new TweetStore(initStorage);
  
 export default tweetStore;
 

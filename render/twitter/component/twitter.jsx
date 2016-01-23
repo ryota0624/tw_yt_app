@@ -28,7 +28,6 @@ class Twitter extends Component {
 		this.state = {
 			tweet: new Tweet()
 		}
-        twitInit(30);
 	}
 	render() {
         const page = this.props.page.twPage;
