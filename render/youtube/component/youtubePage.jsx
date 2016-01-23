@@ -15,7 +15,7 @@ class Youtube extends Component {
 	//動画ツイートボタン
 	render() {
         console.log("hoge")
-		const list = this.props.yt.map((item, i) => {
+		const list = this.props.yt.list.map((item, i) => {
 			return <YTitem key={i}>{item}</YTitem>
 		})
 		return (

@@ -12,10 +12,8 @@ class YTStore extends Store {
 	handler(action) {
 		switch(action.actionType) {
 			case constants.add :
-				let nextState = [].concat(action.videos, this.state);
-                nextState.videoId = this.state.videoId;
-                this.state = nextState;
-                console.log(this.state.videoId);
+				let nextState = [].concat(action.videos, this.state.list);
+                this.state.list = nextState;
 				this.emitChange();
 				storage.saveStorage(this.state);
 				break;
@@ -28,8 +26,9 @@ class YTStore extends Store {
 		}
 	}
 }
-const initialState = storage.loadStorage();
-console.log(initialState);
+let initialState = storage.loadStorage();
+initialState.list = initialState.list ? initialState.list : [];
+
 const youtubeStore = new YTStore(initialState);
  
 export default youtubeStore;

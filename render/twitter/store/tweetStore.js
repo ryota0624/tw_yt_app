@@ -10,7 +10,7 @@ class TweetStore extends Store {
 	constructor(initialState) {
 		super(initialState);
 		this.register(this.handler.bind(this));
-        this.initStore();
+        //this.initStore();
 	}
     
     initStore() {

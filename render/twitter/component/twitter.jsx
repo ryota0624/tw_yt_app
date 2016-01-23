@@ -4,7 +4,6 @@ import tweetStore from '../store/tweetStore';
 import sidebarStore from '../../sidebar/store'
 import twActions from '../actions';
 import TweetList from './tweetList';
-import { twitInit } from "../tweetinit.js";
 
 class Tweet {
 	constructor(text = "", rep = null) {
