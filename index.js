@@ -19,7 +19,7 @@ app.on('ready',() => {
         'min-width': 400,
         'min-height': 200,
         'accept-first-mouse': true,
-        'title-bar-style': 'hidden'
+        'title-bar-style': 'hidden',
 	});
 	mainWindow.loadUrl('file://' + __dirname + '/index.html');
 	mainWindow.on('closed',() => {
