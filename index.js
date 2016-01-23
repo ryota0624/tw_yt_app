@@ -66,7 +66,7 @@ ipc.on("open-tweet" ,(sys,tweet) => {
 
   subWindows[windowNum].loadUrl('file://' + __dirname + '/tweetWindow.html');
   subWindows[windowNum].show();
-	setTimeout(() => subWindows[windowNum].webContents.send("tweet", {tweet, windowNum} ),1000);
+	setTimeout(() => subWindows[windowNum].webContents.send("tweet", {tweet, windowNum} ),500);
 	})(windowNum);
 	windowNum++;
   }

@@ -39,14 +39,15 @@ export default class Twit extends Component {
     
 	render() {
 		const { text,user,extended_entities } = this.props.children;
+        const profile_image_url = user ? user.profile_image_url : null;
         const mediaLink = mediaToLink(extended_entities);
 		return (
 		<li className="list-group-item"  onClick={this.clickHandle.bind(this)}>
     		<img className="img-circle media-object pull-left" 
-				src={user.profile_image_url}
+				src={profile_image_url}
 				width="32" height="32"/>
     		<div className="media-body">
-					<strong>{user.name}</strong>
+					<strong>{user ? user.name : null }</strong>
       		{ tweetText(text) }
             <ul style={listStyle}>
             { mediaLink }

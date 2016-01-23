@@ -31,6 +31,8 @@ class Twitter extends Component {
 	}
 	render() {
         const page = this.props.page.twPage;
+        const tweets = this.props.tweet.tweets.toArray();
+        console.log(this.props)
  		return (
 			<ul className="list-group">
 				<li className="list-group-header">
@@ -39,7 +41,7 @@ class Twitter extends Component {
 						onChange={this.changeHandle.bind(this)}
 						onKeyDown={this.enterHandle.bind(this)}/>
 				</li>
-				<TweetList tweet={this.props.tweet} page={page}/>
+				<TweetList tweet={tweets} page={page}/>
 			</ul>)
 	}
 	changeHandle(ev) {

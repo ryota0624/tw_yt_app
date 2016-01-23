@@ -4,28 +4,45 @@ import storageCreater from "../../storage";
 const  storage = storageCreater('tw',1000);
 const im = require("immutable");
 const twitter = remote.require("./lib/tweet");
+import actions from "../actions";
 
 class TweetStore extends Store {
 	constructor(initialState) {
 		super(initialState);
 		this.register(this.handler.bind(this));
+        this.initStore();
 	}
+    
+    initStore() {
+        twitter.fetch(10, (tweets) => {
+            if(tweets.errors) {
+                console.log(tweets.errors);
+                return false
+            }
+            actions.fetchInit(tweets);
+            twitter.stream().on("tweet", (tweet) => {
+                actions.addTweet(tweet);
+            });
+              
+        })
+    }
 	
 	handler(action) {
 		switch(action.actionType) {
 			case constants.add :
-                const { id } = action.tweet;
-                this.state.tweets = this.state.tweets.set(id, action.tweet);
+                const { id_str } = action.tweet;
+                this.state.tweets = this.state.tweets.set(id_str, action.tweet);
 			    this.emitChange();
                 this.saveTweets();
 			break;
             case constants.init :
-                {tweets} = action;
+                const {tweets} = action;
                 let tweetsOb = {};
                 tweets.forEach(tweet => {
-                    tweetsOb[tweet.id] = tweet;
+                    tweetsOb[tweet.id_str] = tweet;
                 });
-                this.state.tweets = tweets.concat(im.Map(tweetsOb));
+                console.log(im.Map(tweetsOb))
+                this.state.tweets = this.state.tweets.concat(im.Map(tweetsOb));
 			    this.emitChange();
                 this.saveTweets();
             break;
@@ -34,10 +51,12 @@ class TweetStore extends Store {
 	}
     
     saveTweets() {
+        console.log(this.state)
         const forStorage = Object.assign({}, this.state, {tweets: this.state.tweets.toJSON()});
 		storage.saveStorage(forStorage);
     }
 }
+
 let initStorage = storage.loadStorage();
 initStorage.tweets = new im.Map(initStorage.tweets);
 const tweetStore = new TweetStore(initStorage);
